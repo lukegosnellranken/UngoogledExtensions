@@ -1,13 +1,64 @@
 body {
     display: flex;
     justify-content: center;
+    background-color: rgb(120, 182, 213);
+    font-size: 120%;
+    font-family: Times, 'Times New Roman', serif;
+}
+
+.link {
+  text-decoration: none;
+  color: blue; 
 }
 
 .header {
     display: flex;
     justify-content: center;
+    font-weight: bold;
+    font-size: 300%;
+}
+
+#steps {
+    display: flex;
+    justify-content: center;
+}
+
+#extensionURL {
+    width: 400px;
+}
+
+#downloadBtnDiv {
+    display: flex;
+    justify-content: center;
 }
 
 #head1 {
-    padding-top: 5%;
+    padding-top: 0%;
+}
+
+#head2 {
+    margin-top: -5%;
+    padding-bottom: 0%;
+}
+
+#step3 {
+    display: inline;
+}
+
+#step4 {
+    display: inline-block;
+}
+
+.blue {
+    color: darkblue;
+}
+
+.red {
+    color: red;
+}
+.yellow {
+    color: yellow;
+}
+.green {
+    color: greenyellow;
 }

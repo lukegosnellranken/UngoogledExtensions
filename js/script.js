@@ -54,6 +54,7 @@ function checkflags() {
 }
 
 function onDownload() {
+    userURL = document.getElementById("extensionURL").value;
     extensionID = userURL;
     console.log(extensionID);
     extensionID = extensionID.split("/").pop();
