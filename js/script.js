@@ -7,6 +7,7 @@ let userURL = document.getElementById("extensionURL").value;
 let finalURL;
 let flag1 = false;
 let flag2 = false;
+let checkValidFlag = false;
 let downloadBtn = document.getElementById("downloadBtn");
 let addToTextboxText;
 
@@ -53,6 +54,37 @@ function checkflags() {
     }
 }
 
+/* function onDownload() {
+    userURL = document.getElementById("extensionURL").value;
+    extensionID = userURL;
+    console.log(extensionID);
+    extensionID = extensionID.split("/").pop();
+    console.log(extensionID);
+    finalURL = url1 + version + url2 + extensionID + url3;
+    console.log(finalURL);
+    checkValid(finalURL);
+    if (checkValidFlag = true) {
+        window.location.href = finalURL;
+    } else {
+        console.log("FALSE!!!");
+    }
+}
+ */
+
+
+/* function checkValid(fu) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', fu, false);
+    http.send();
+    if (http.status != 404) {
+        checkValidFlag = true;
+        console.log("checkValidFlag true");
+    } else {
+        checkValidFlag = false;
+        console.log("checkValidFlag false");
+    }
+} */
+
 function onDownload() {
     userURL = document.getElementById("extensionURL").value;
     extensionID = userURL;
@@ -61,5 +93,25 @@ function onDownload() {
     console.log(extensionID);
     finalURL = url1 + version + url2 + extensionID + url3;
     console.log(finalURL);
-    window.location.href = finalURL;
+    urlExists(finalURL, function(exists) {
+        if (exists) {
+            checkValidFlag = true;
+            console.log("checkValidFlag true");
+        } else {
+            checkValidFlag = false;
+            console.log("checkValidFlag false");
+        }
+    });
+    if (checkValidFlag = true) {
+        window.location.href = finalURL;
+    } else {
+        console.log("FALSE!!!");
+    }
+}
+
+function urlExists(finalURL, callback) {
+    fetch(finalURL, { method: 'head' })
+    .then(function(status) {
+      callback(status.ok)
+    });
 }

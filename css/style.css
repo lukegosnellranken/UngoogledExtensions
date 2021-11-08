@@ -62,3 +62,21 @@ body {
 .green {
     color: greenyellow;
 }
+
+#footer {
+    /* background-color: rgb(41, 148, 175); */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#footerText {
+    font-size: 80%;
+    
+}
+
+@media screen and (max-width: 800px) {
+    body {
+      font-size: 90%;
+    }
+}
