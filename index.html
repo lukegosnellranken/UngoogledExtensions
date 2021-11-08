@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ungoogled Extensions</title>
+</head>
+<body onload="onPageLoad()">
+    <h1 class="header">Ungoogled Extensions</h1>
+    <div class="main"> 
+        <div class="extension">
+            <input type="text" id="extensionURL" placeholder="Extension URL" oninput="extensionEntered()">
+        </div>
+        <div class="form">
+            <form action="">
+                <select name="Chromium Version" id="versionDropdown" onchange="versionSelect()">
+                    <option value="Chromium Version" selected disabled>Chromium Version</option>
+                    <option value="89">89</option>
+                    <option value="87">87</option>
+                    <option value="86">86</option>
+                    <option value="85">85</option>
+                    <option value="84">84</option>
+                </select>
+            </form>
+        </div>
+        <div class="download">
+            <button id="downloadBtn" disabled onclick="onDownload()">Download</button>
+        </div>
+        <div class="instructions">
+            <h4>How to download</h4>
+            <ol>
+                <li>Visit <a href="https://chrome.google.com/webstore/category/extensions" target="_blank">the Chrome web store</a> to search for an extension.</li>
+                <li>Copy the URL of the extention to download.</li>
+                <li>Paste the URL above.</li>
+                <li>Select your Chromium version. Find your version here: <a href="chrome://settings/help" target="_blank">chrome://settings/help</a></li>
+                <li>Click the button to download the CRX file.</li>
+            </ol>
+            <br>
+            <h4>How to install</h4>
+            <ol>
+                <li>Open <a href="chrome://extensions" target="_blank">chrome://extensions</a>. Enable developer mode (top right of screen) and refresh.</li>
+                <li>Drag-and-drop the CRX from a file browser into the page of the extensions tab.</li>
+            </ol>
+            <br>
+            <h4>Notes</h4>
+            <p>Copy + paste the above chrome links in a new tab if your Chromium install doesn't allow opening links to local resources.</p>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
