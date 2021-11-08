@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ungoogled Extensions</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
 </head>
 <body onload="onPageLoad()">
-    <h1 class="header">Ungoogled Extensions</h1>
-    <div class="main"> 
+    <div class="main">
+        <h1 class="header" id="head1">Ungoogled</h1>
+        <h1 class="header" id="head2">Extensions</h1>
         <div class="extension">
             <input type="text" id="extensionURL" placeholder="Extension URL" oninput="extensionEntered()">
         </div>
@@ -44,7 +46,14 @@
             </ol>
             <br>
             <h4>Notes</h4>
-            <p>Copy + paste the above chrome links in a new tab if your Chromium install doesn't allow opening links to local resources.</p>
+            <ul>
+                <li>Copy + paste the above chrome links in a new tab if your Chromium install doesn't allow opening links to local resources.</li>
+            </ul>
+            <br>
+            <h4>Popular Extensions (click to select)</h4>
+            <ul>
+                <li><a onclick="addToTextbox('chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm')">uBlock Origin</a> <a href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm" target="_blank">(view)</a></li>
+            </ul>
         </div>
     </div>
     <script src="js/script.js"></script>

@@ -8,6 +8,7 @@ let finalURL;
 let flag1 = false;
 let flag2 = false;
 let downloadBtn = document.getElementById("downloadBtn");
+let addToTextboxText;
 
 function onPageLoad() {
     userURL.value="";
@@ -32,6 +33,15 @@ function extensionEntered() {
         flag2 = false;
         checkflags();
     }
+}
+
+function addToTextbox(url) {
+    console.log(url);
+    addToTextboxText = "https://" + url;
+    console.log(addToTextboxText);
+    document.getElementById("extensionURL").value = addToTextboxText;
+    flag2 = true;
+    checkflags();
 }
 
 function checkflags() {
