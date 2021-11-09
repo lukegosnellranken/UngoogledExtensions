@@ -62,6 +62,18 @@ body {
     justify-content: center;
 }
 
+#errorDiv {
+    justify-content: center;
+}
+
+#errorMessage {
+    color: red;
+    font-family: monospace;
+    display: none;
+    justify-content: center;
+    padding-bottom: 2%;
+}
+
 #head1 {
     padding-top: 7%;
 }

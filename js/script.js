@@ -11,6 +11,7 @@ let flag2 = false;
 let checkValidFlag = false;
 let downloadBtn = document.getElementById("downloadBtn");
 let addToTextboxText;
+let error = document.getElementById("errorMessage");
 
 function onPageLoad() {
     userURL.value="";
@@ -23,11 +24,17 @@ function versionSelect() {
     checkflags();
 }
 
+// No need for browser name check. Don't want to check browser onload for sake of user privacy.
+
 function autoDetect() {
     browser=get_browser();
     console.log(browser);
-    if (browser.name != "Chrome" && browser.version >= 62) {
-        // Error message
+    if (browser.version <= 61) {
+        console.log("invalid browser");
+        error.style = "display:flex";
+        errorDiv.style = "display:flex";
+        error.innerHTML = "Version " + browser.version +  " Incompatible";
+        setTimeout(showVersionError, 3000);
     } else {
         let detectedVersion = browser.version;
         console.log(detectedVersion);
@@ -36,6 +43,13 @@ function autoDetect() {
         flag1 = true;
         checkflags();
     }
+}
+
+function showVersionError() {
+    console.log("showVersionError trigger");
+    error.style = "display:flex";
+    errorDiv.style = "display:none";
+    error.innerHTML = "";
 }
 
 function extensionEntered() {
@@ -85,7 +99,7 @@ function onDownload() {
         } else {
             checkValidFlag = false;
             console.log("checkValidFlag false");
-            // Error message
+            // Error message (Failed, see comment below);
         }
     });
     if (checkValidFlag = true) {
@@ -127,7 +141,7 @@ function get_browser() {
 
 
 
- /* Outdated functions based on deprecated XMLHttpRequest() functionality
+ /* Outdated functions based on deprecated XMLHttpRequest() functionality.
  
  function onDownload() {
     userURL = document.getElementById("extensionURL").value;
