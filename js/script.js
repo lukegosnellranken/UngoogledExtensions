@@ -2,6 +2,7 @@ let url1 = "https://clients2.google.com/service/update2/crx?response=redirect&ac
 let url2 = "&x=id%3D"
 let url3 = "%26installsource%3Dondemand%26uc"
 let version = document.forms[0].versionDropdown.value;
+let browser;
 let extensionID;
 let userURL = document.getElementById("extensionURL").value;
 let finalURL;
@@ -22,11 +23,26 @@ function versionSelect() {
     checkflags();
 }
 
+function autoDetect() {
+    browser=get_browser();
+    console.log(browser);
+    if (browser.name != "Chrome" && browser.version >= 62) {
+        // Error message
+    } else {
+        let detectedVersion = browser.version;
+        console.log(detectedVersion);
+        document.forms[0].versionDropdown.value = detectedVersion;
+        version = detectedVersion;
+        flag1 = true;
+        checkflags();
+    }
+}
+
 function extensionEntered() {
     console.log("extendionEntered Hit");
     userURL = document.getElementById("extensionURL").value;
     console.log(userURL);
-    if (userURL.length > 10) {
+    if (userURL.length > 30) {
         flag2 = true;
         console.log("length check");
         checkflags();
@@ -54,37 +70,6 @@ function checkflags() {
     }
 }
 
-/* function onDownload() {
-    userURL = document.getElementById("extensionURL").value;
-    extensionID = userURL;
-    console.log(extensionID);
-    extensionID = extensionID.split("/").pop();
-    console.log(extensionID);
-    finalURL = url1 + version + url2 + extensionID + url3;
-    console.log(finalURL);
-    checkValid(finalURL);
-    if (checkValidFlag = true) {
-        window.location.href = finalURL;
-    } else {
-        console.log("FALSE!!!");
-    }
-}
- */
-
-
-/* function checkValid(fu) {
-    var http = new XMLHttpRequest();
-    http.open('HEAD', fu, false);
-    http.send();
-    if (http.status != 404) {
-        checkValidFlag = true;
-        console.log("checkValidFlag true");
-    } else {
-        checkValidFlag = false;
-        console.log("checkValidFlag false");
-    }
-} */
-
 function onDownload() {
     userURL = document.getElementById("extensionURL").value;
     extensionID = userURL;
@@ -100,6 +85,7 @@ function onDownload() {
         } else {
             checkValidFlag = false;
             console.log("checkValidFlag false");
+            // Error message
         }
     });
     if (checkValidFlag = true) {
@@ -109,9 +95,67 @@ function onDownload() {
     }
 }
 
+// urlExists check function fails due to CORS security measure. Thus, it is bypassed.
+
 function urlExists(finalURL, callback) {
     fetch(finalURL, { method: 'head' })
     .then(function(status) {
       callback(status.ok)
     });
 }
+
+
+// Function below taken from user Murb: https://stackoverflow.com/questions/5916900/how-can-you-detect-the-version-of-a-browser
+function get_browser() {
+    var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []; 
+    if(/trident/i.test(M[1])){
+        tem=/\brv[ :]+(\d+)/g.exec(ua) || []; 
+        return {name:'IE',version:(tem[1]||'')};
+        }   
+    if(M[1]==='Chrome'){
+        tem=ua.match(/\bOPR|Edge\/(\d+)/)
+        if(tem!=null)   {return {name:'Opera', version:tem[1]};}
+        }   
+    M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+    if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
+    return {
+      name: M[0],
+      version: M[1]
+    };
+ }
+
+
+
+
+ /* Outdated functions based on deprecated XMLHttpRequest() functionality
+ 
+ function onDownload() {
+    userURL = document.getElementById("extensionURL").value;
+    extensionID = userURL;
+    console.log(extensionID);
+    extensionID = extensionID.split("/").pop();
+    console.log(extensionID);
+    finalURL = url1 + version + url2 + extensionID + url3;
+    console.log(finalURL);
+    checkValid(finalURL);
+    if (checkValidFlag = true) {
+        window.location.href = finalURL;
+    } else {
+        console.log("FALSE!!!");
+    }
+}
+
+function checkValid(fu) {
+    var http = new XMLHttpRequest();
+    http.open('HEAD', fu, false);
+    http.send();
+    if (http.status != 404) {
+        checkValidFlag = true;
+        console.log("checkValidFlag true");
+    } else {
+        checkValidFlag = false;
+        console.log("checkValidFlag false");
+    }
+}
+
+*/

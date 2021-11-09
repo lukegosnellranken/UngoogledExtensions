@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
 </head>
 <body onload="onPageLoad()">
+    <a id="top"></a>
     <div id="imageDiv">
         <img src="./projectImages/Chromium_logo.png" id="image">
     </div>
@@ -18,10 +19,10 @@
             <ol>
                 <li>Visit the <a class="link" href="https://chrome.google.com/webstore/category/extensions" target="_blank">Chrome Web Store</a> to search for an extension.</li>
                 <li>Copy the URL of the extention to download.</li>
-                <li>Paste the URL
+                <li>Paste the URL.
                     <div class="extension" id="step3">
                         <input type="text" id="extensionURL" placeholder="Extension URL" oninput="extensionEntered()">
-                    </div> 
+                    </div>
                 </li>
                 <li>Select your Chromium version. 
                     <div class="form" id="step4">
@@ -58,14 +59,13 @@
                             </select>
                         </form>
                     </div>
+                    <a id="autoDetect" class="link" href="#top" onclick="autoDetect()">(auto-detect)</a>
                 </li>
             </ol>
         </div>
         <div class="download" id="downloadBtnDiv">
             <button id="downloadBtn" disabled onclick="onDownload()">Download</button>
         </div>
-        <br>
-        <br>
         <div class="instructions">
             <h4>How to Install</h4>
             <ol>
@@ -79,19 +79,20 @@
                 <li>Instructions for downloading extensions manually can be found <a class="link" href="https://ungoogled-software.github.io/ungoogled-chromium-wiki/faq#can-i-install-extensions-or-themes-from-the-chrome-webstore" target="_blank">here</a>.</li>
                 <li>Find your version here: <a class="link" href="chrome://settings/help" target="_blank">chrome://settings/help</a></li>
                 <li>Copy + paste the above chrome links in a new tab if your Chromium install doesn't allow opening links to local resources.</li>
+                <li>Take back the web from soulless megacorporations with other privacy-respecting web browsers, such as <a class="link" href="https://www.palemoon.org/" target="_blank">Pale Moon</a>.</li>
             </ul>
             <br>
-            <h4>Suggested Extensions (click to select)</h4>
+            <h4>Suggested Extensions (click title to select)</h4>
             <ul>
                 <li>General</li>
                 <ul>
-                    <li><a class="link" onclick="addToTextbox('chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm')">uBlock Origin</a> <a class="link" href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm" target="_blank">(view)</a></li>
-                    <li><a class="link" onclick="addToTextbox('chrome.google.com/webstore/detail/fakespot-fake-amazon-revi/nakplnnackehceedgkgkokbgbmfghain')">Fakespot</a> <a class="link" href="https://chrome.google.com/webstore/detail/fakespot-fake-amazon-revi/nakplnnackehceedgkgkokbgbmfghain" target="_blank">(view)</a></li>
+                    <li><a class="link" href="#top" onclick="addToTextbox('chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm')">uBlock Origin</a> <a class="link" href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm" target="_blank">(view)</a></li>
+                    <li><a class="link" href="#top" onclick="addToTextbox('chrome.google.com/webstore/detail/fakespot-fake-amazon-revi/nakplnnackehceedgkgkokbgbmfghain')">Fakespot</a> <a class="link" href="https://chrome.google.com/webstore/detail/fakespot-fake-amazon-revi/nakplnnackehceedgkgkokbgbmfghain" target="_blank">(view)</a></li>
                 </ul>
                 <li>Webdev</li>
                 <ul>
-                    <li><a class="link" onclick="addToTextbox('chrome.google.com/webstore/detail/width-and-height-display/hhcddohiohbojnfdmfpbbhiaompeiemo')">Width and Height Display</a> <a class="link" href="https://chrome.google.com/webstore/detail/width-and-height-display/hhcddohiohbojnfdmfpbbhiaompeiemo" target="_blank">(view)</a></li>
-                    <li><a class="link" onclick="addToTextbox('chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh')">Window Resizer</a> <a class="link" href="https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh" target="_blank">(view)</a></li>
+                    <li><a class="link" href="#top" onclick="addToTextbox('chrome.google.com/webstore/detail/width-and-height-display/hhcddohiohbojnfdmfpbbhiaompeiemo')">Width and Height Display</a> <a class="link" href="https://chrome.google.com/webstore/detail/width-and-height-display/hhcddohiohbojnfdmfpbbhiaompeiemo" target="_blank">(view)</a></li>
+                    <li><a class="link" href="#top" onclick="addToTextbox('chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh')">Window Resizer</a> <a class="link" href="https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh" target="_blank">(view)</a></li>
                 </ul>
             </ul>
         </div>

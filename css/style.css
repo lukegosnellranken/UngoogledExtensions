@@ -36,6 +36,10 @@ body {
   color: blue; 
 }
 
+#autoDetect {
+    font-size: 80%;
+}
+
 .header {
     display: flex;
     justify-content: center;
@@ -50,7 +54,7 @@ body {
 }
 
 #extensionURL {
-    width: 400px;
+    width: 335px;
 }
 
 #downloadBtnDiv {
@@ -113,5 +117,25 @@ body {
     }
     #image {
         width: 15em;
+    }
+    #extensionURL {
+        width: 285px;
+    }
+    #head1 {
+        padding-top: 4%;
+    }
+    #head2 {
+        margin-top: -6.5%;
+        padding-bottom: 0%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #head1 {
+        padding-top: 4%;
+    }
+    #head2 {
+        margin-top: -10%;
+        padding-bottom: 0%;
     }
 }
