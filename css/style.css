@@ -4,6 +4,31 @@ body {
     background-color: rgb(120, 182, 213);
     font-size: 120%;
     font-family: Times, 'Times New Roman', serif;
+    /* background-image: url('../projectImages/Chromium_logo.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-size: 25%;
+    background-position-x: center;
+    background-position-y: top;
+    background-attachment: fixed; */ 
+}
+
+#main {
+    position: absolute;
+    z-index: 0;
+}
+
+#image {
+    position: absolute;
+    z-index: -1;
+    width: 20em;
+}
+
+#imageDiv {
+    position: absolute;
+    display: flex;
+    justify-content: center;
 }
 
 .link {
@@ -21,6 +46,7 @@ body {
 #steps {
     display: flex;
     justify-content: center;
+    margin-top: -4%;
 }
 
 #extensionURL {
@@ -33,7 +59,7 @@ body {
 }
 
 #head1 {
-    padding-top: 0%;
+    padding-top: 7%;
 }
 
 #head2 {
@@ -78,5 +104,14 @@ body {
 @media screen and (max-width: 800px) {
     body {
       font-size: 90%;
+    }
+    #head1 {
+        padding-top: 0%;
+    }
+    #steps {
+        margin-top: 0%;
+    }
+    #image {
+        width: 15em;
     }
 }
