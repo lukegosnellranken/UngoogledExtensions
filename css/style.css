@@ -55,6 +55,11 @@ body {
 
 #extensionURL {
     width: 335px;
+    background-color: rgb(225, 244, 255);
+}
+
+#versionDropdown {
+    background-color: rgb(225, 244, 255);
 }
 
 #downloadBtnDiv {

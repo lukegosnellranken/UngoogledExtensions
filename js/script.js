@@ -12,10 +12,33 @@ let checkValidFlag = false;
 let downloadBtn = document.getElementById("downloadBtn");
 let addToTextboxText;
 let error = document.getElementById("errorMessage");
+let currentVersion;
+let versionArray = [];
+let versionResponse;
+
+/* $.getJSON('https://omahaproxy.appspot.com/win', function(data) {
+    console.log(data);
+}); */
+
+//http://time.jsontest.com
+
+//https://vergrabber.kingu.pl/vergrabber.json
 
 function onPageLoad() {
     userURL.value="";
+    $.getJSON('https://omahaproxy.appspot.com/all.json', function(data) {
+        console.log(`${JSON.stringify(data)}`);
+        versionArray = JSON.parse(`${data}`);
+        console.log(versionArray);
+    });
+    console.log(versionResponse);
 }
+
+// Populate version dropdown
+/* for (var i; i < 50; i++) {
+    versionArray[i] = 
+} */
+
 
 function versionSelect() {
     version = document.forms[0].versionDropdown.value;
