@@ -1,6 +1,15 @@
+/* 
+THINGS TO IMPROVE ON
+1. Find CORS workaround for checking that extension URL exists before taking user away from page
+2. Check for if version number for extension exists and show error (API probably needed)
+*/
+
+
 let url1 = "https://clients2.google.com/service/update2/crx?response=redirect&acceptformat=crx2,crx3&prodversion=";
 let url2 = "&x=id%3D"
 let url3 = "%26installsource%3Dondemand%26uc"
+let versionDropdown = document.getElementById("versionDropdown");
+let versionArray = [];
 let version = document.forms[0].versionDropdown.value;
 let browser;
 let extensionID;
@@ -13,33 +22,41 @@ let downloadBtn = document.getElementById("downloadBtn");
 let addToTextboxText;
 let error = document.getElementById("errorMessage");
 let currentVersion;
-let versionArray = [];
+let versionJSON;
 let versionResponse;
+let versionNumber;
+let lastAvailableVer = 0;
 
-/* $.getJSON('https://omahaproxy.appspot.com/win', function(data) {
-    console.log(data);
-}); */
-
-//http://time.jsontest.com
-
-//https://vergrabber.kingu.pl/vergrabber.json
-
+// Programatically get current Chrome version number (WILL need to be changed when Chrome ver num hits 100).
 function onPageLoad() {
     userURL.value="";
     $.getJSON('https://omahaproxy.appspot.com/all.json', function(data) {
-        console.log(`${JSON.stringify(data)}`);
-        versionArray = JSON.parse(`${data}`);
-        console.log(versionArray);
+        //console.log(`${JSON.stringify(data)}`);
+        versionJSON = `${JSON.stringify(data)}`;
+        let strPos1 = (versionJSON.indexOf("current_version") + 18);
+        let strPos2 = versionJSON.indexOf("current_version") + 19;
+        versionNumber = versionJSON[strPos1] + versionJSON[strPos2];
+        versionNumber = Number(versionNumber);
+        console.log("Current Chrome version: " + versionNumber);
+        populateArray();
     });
-    console.log(versionResponse);
 }
 
-// Populate version dropdown
-/* for (var i; i < 50; i++) {
-    versionArray[i] = 
-} */
+function populateArray() {
+    // Populate array
+    for (let i = 0; i < versionNumber; i++) {
+        let addition = versionNumber - i;
+        versionArray.push(addition);
+    }
 
+    // Populate version dropdown
+    for(let i = 0; i < versionArray.length; i++) {
+        let opt = versionArray[i];
+        versionDropdown.innerHTML += "<option value=\"" + opt + "\">" + opt + "</option>";
+    }
+}
 
+// Set flag1 to true when version number is selected
 function versionSelect() {
     version = document.forms[0].versionDropdown.value;
     console.log(version);
@@ -52,36 +69,44 @@ function versionSelect() {
 function autoDetect() {
     browser=get_browser();
     console.log(browser);
-    if (browser.version <= 61) {
+    if (browser.name == "Chrome") {
+        if (browser.version <= lastAvailableVer) {
+            console.log("invalid browser version");
+            error.style = "display:flex";
+            errorDiv.style = "display:flex";
+            error.innerHTML = "Version " + browser.version +  " Incompatible";
+            setTimeout(showError, 3000);
+        } else {
+            let detectedVersion = browser.version;
+            console.log(detectedVersion);
+            document.forms[0].versionDropdown.value = detectedVersion;
+            version = detectedVersion;
+            flag1 = true;
+            checkflags();
+        }
+    } else {
         console.log("invalid browser");
         error.style = "display:flex";
         errorDiv.style = "display:flex";
-        error.innerHTML = "Version " + browser.version +  " Incompatible";
-        setTimeout(showVersionError, 3000);
-    } else {
-        let detectedVersion = browser.version;
-        console.log(detectedVersion);
-        document.forms[0].versionDropdown.value = detectedVersion;
-        version = detectedVersion;
-        flag1 = true;
-        checkflags();
+        error.innerHTML = browser.name + " incompatible. Auto-detect failed.";
+        setTimeout(showError, 3000);
     }
 }
 
-function showVersionError() {
-    console.log("showVersionError trigger");
+function showError() {
+    console.log("showError trigger");
     error.style = "display:flex";
     errorDiv.style = "display:none";
     error.innerHTML = "";
 }
 
+// Set flag2 to true when extension URL is entered and matches length check.
 function extensionEntered() {
     console.log("extendionEntered Hit");
     userURL = document.getElementById("extensionURL").value;
     console.log(userURL);
     if (userURL.length > 30) {
         flag2 = true;
-        console.log("length check");
         checkflags();
     } else {
         flag2 = false;
@@ -89,6 +114,7 @@ function extensionEntered() {
     }
 }
 
+// Add suggested extension to textbox when clicked.
 function addToTextbox(url) {
     console.log(url);
     addToTextboxText = "https://" + url;
@@ -98,8 +124,8 @@ function addToTextbox(url) {
     checkflags();
 }
 
+// Enable download button when both flags are set to true.
 function checkflags() {
-    console.log("check");
     if (flag1 == true && flag2 == true){
         downloadBtn.disabled = false;
     } else {
@@ -107,6 +133,7 @@ function checkflags() {
     }
 }
 
+// Generate URL for downloading with given extension and browser version.
 function onDownload() {
     userURL = document.getElementById("extensionURL").value;
     extensionID = userURL;
@@ -142,7 +169,7 @@ function urlExists(finalURL, callback) {
 }
 
 
-// Function below taken from user Murb: https://stackoverflow.com/questions/5916900/how-can-you-detect-the-version-of-a-browser
+// Function (for getting user's browser) below taken from user Murb: https://stackoverflow.com/questions/5916900/how-can-you-detect-the-version-of-a-browser
 function get_browser() {
     var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []; 
     if(/trident/i.test(M[1])){
