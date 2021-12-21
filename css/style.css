@@ -117,6 +117,14 @@ body {
     justify-content: center;
 }
 
+#footer2 {
+    /* background-color: rgb(41, 148, 175); */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: -2%;
+}
+
 #footerText {
     font-size: 80%;
 }
