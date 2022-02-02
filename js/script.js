@@ -25,17 +25,28 @@ let currentVersion;
 let versionJSON;
 let versionResponse;
 let versionNumber;
+let checkVersion100Flag = false;
 let lastAvailableVer = 0;
 
-// Programatically get current Chrome version number (WILL need to be changed when Chrome ver num hits 100).
+// Programatically get current Chrome version number (flag checks for chromium version 100+).
+// If first digit is 1, account for three digits. Otherwise account for two.
+// Chrome version surpasses two digits as of 02/02/22.
 function onPageLoad() {
     userURL.value="";
     $.getJSON('https://omahaproxy.appspot.com/all.json', function(data) {
         //console.log(`${JSON.stringify(data)}`);
         versionJSON = `${JSON.stringify(data)}`;
-        let strPos1 = (versionJSON.indexOf("current_version") + 18);
+        let strPos1 = versionJSON.indexOf("current_version") + 18;
         let strPos2 = versionJSON.indexOf("current_version") + 19;
-        versionNumber = versionJSON[strPos1] + versionJSON[strPos2];
+        let strPos3 = versionJSON.indexOf("current_version") + 20;
+        if (versionJSON[strPos1] == 1) {
+            checkVersion100Flag = true;
+        }
+        if (checkVersion100Flag = true) {
+            versionNumber = versionJSON[strPos1] + versionJSON[strPos2] + versionJSON[strPos3];
+        } else {
+            versionNumber = versionJSON[strPos1] + versionJSON[strPos2];
+        }
         versionNumber = Number(versionNumber);
         console.log("Current Chrome version: " + versionNumber);
         populateArray();
