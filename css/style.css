@@ -129,6 +129,15 @@ body {
     font-size: 80%;
 }
 
+.copyLink {
+    color: blue;
+}
+
+.copyLink:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 @media screen and (max-width: 800px) {
     body {
       font-size: 90%;
