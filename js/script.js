@@ -33,12 +33,12 @@ let lastAvailableVer = 0;
 // Chrome version surpasses two digits as of 02/02/22.
 function onPageLoad() {
     userURL.value="";
-    $.getJSON('https://omahaproxy.appspot.com/all.json', function(data) {
+    $.getJSON('https://versionhistory.googleapis.com/v1/chrome/platforms/all/channels/stable/versions', function(data) {
         //console.log(`${JSON.stringify(data)}`);
         versionJSON = `${JSON.stringify(data)}`;
-        let strPos1 = versionJSON.indexOf("current_version") + 18;
-        let strPos2 = versionJSON.indexOf("current_version") + 19;
-        let strPos3 = versionJSON.indexOf("current_version") + 20;
+        let strPos1 = versionJSON.indexOf('"version":"') + 11;
+        let strPos2 = versionJSON.indexOf('"version":') + 12;
+        let strPos3 = versionJSON.indexOf('"version":') + 13;
         if (versionJSON[strPos1] == 1) {
             checkVersion100Flag = true;
         }
