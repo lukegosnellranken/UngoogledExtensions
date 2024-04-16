@@ -45,8 +45,13 @@
         <div id="errorDiv">
             <p id="errorMessage"></p>
         </div>
-        <div class="download" id="downloadBtnDiv">
-            <button id="downloadBtn" disabled onclick="onDownload()">Download</button>
+        <div id="buttonsDiv">
+            <div class="download" id="downloadBtnDiv">
+                <button id="downloadBtn" disabled onclick="onDownload()">Download</button>
+            </div>
+            <div class="copy" id="copyBtnDiv">
+                <button id="copyBtn" disabled onclick="onCopy()">Copy</button>
+            </div>
         </div>
         <div class="instructions">
             <h4>How to Install</h4>
@@ -55,23 +60,27 @@
                 <li>Drag-and-drop the CRX from a file browser into the page of the extensions tab.</li>
             </ol>
             <br>
+            <h4>Troubleshooting</h4>
+            <ul>
+                <li>If your browser does not allow you to download, click the copy button instead and paste the URL in a different browser</li>
+                <li>Copy + paste <u>chrome://</u> links in a new tab if your Chromium install does not allow opening links to local resources.</li>
+            </ul>
+            <br>
             <h4>Notes</h4>
             <ul>
                 <li>This is a quick and easy solution to downloading extensions for Chromium-based browsers, HOWEVER: <br>For a more intuitive solution with built-in semi-auto-updating, see <a class="link" href="https://github.com/NeverDecaf/chromium-web-store" target="_blank">github.com/NeverDecaf/chromium-web-store</a>.</li>
                 <li>Instructions for downloading extensions manually can be found <a class="link" href="https://ungoogled-software.github.io/ungoogled-chromium-wiki/faq#can-i-install-extensions-or-themes-from-the-chrome-webstore" target="_blank">here</a>.</li>
                 <li>Find your version here: <a class="link" href="chrome://settings/help" target="_blank">chrome://settings/help</a></li>
-                <li>Copy + paste the above chrome links in a new tab if your Chromium install doesn't allow opening links to local resources.</li>
                 <li>Take back the web from soulless megacorporations with other privacy-respecting web browsers, such as <a class="link" href="https://www.palemoon.org/" target="_blank">Pale Moon</a>.</li>
                 <li>While you're at it, go fully off the grid with <a class="link" href="https://beakerbrowser.com/" target="_blank">Beaker</a> or <a class="link" href="https://www.torproject.org/" target="_blank">Tor</a>.</li>
                 <li>This project is <a class="link" href="https://github.com/lukegosnellranken/UngoogledExtensions" target="_blank">OPEN SOURCE</a>!</li>
             </ul>
             <br>
-            <h4>The Pathetic YouTube Adblock War</h4>
+            <h4>Adblock for YouTube</h4>
             <ul>
-                <li>Instead of improving their site by bringing back the non-invasive and infrequent advertising of yesteryear, Google has decided to wage war on its users.</li>
-                <li>This has resulted in embarassing (and unethical) attempts to "get around" free adblock extensions that make the internet more usable.</li>
-                <li><a class="copyLink" onclick="adblockScript()">Click here</a> to copy what is currently a list of uBlock Origin filters which seem to work consistently to get around these adblock-blocking measures.</li>
-                <li>For a more reliable solution, I've found <a class="link" href="https://adskipper.me/" target="_blank">this</a> extension to be the most useful, since it skips ads as opposed to blocking them.</li>
+                <li>In recent times, Google has made it increasingly tricky to get around their anti-adblock measures.</li>
+                <li>I've found <a class="link" href="https://adskipper.me/" target="_blank">this extension</a> to be the most reliable, as it skips ads near-immediately as opposed to outright blocking them.</li>
+                <li><a class="copyLink" onclick="adblockScript()">Click here</a> to copy a list of uBlock Origin filters which sometimes seem to help.</li>
             </ul>
             <br>
             <h4>Suggested Extensions (click title to select)</h4>
@@ -79,6 +88,7 @@
                 <li>General</li>
                 <ul>
                     <li><a class="link" href="#top" onclick="addToTextbox('chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm')">uBlock Origin</a> <a class="link" href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm" target="_blank">(view)</a></li>
+                    <li><a class="link" href="#top" onclick="addToTextbox('chrome.google.com/webstore/detail/custom-new-tab/lfjnnkckddkopjfgmbcpdiolnmfobflj')">Custom New Tab</a> <a class="link" href="https://chromewebstore.google.com/detail/custom-new-tab/lfjnnkckddkopjfgmbcpdiolnmfobflj" target="_blank">(view)</a></li>
                     <li><a class="link" href="#top" onclick="addToTextbox('chrome.google.com/webstore/detail/decentraleyes/ldpochfccmkkmhdbclfhpagapcfdljkj')">Decentraleyes</a> <a class="link" href="https://chrome.google.com/webstore/detail/decentraleyes/ldpochfccmkkmhdbclfhpagapcfdljkj" target="_blank">(view)</a></li>
                     <li><a class="link" href="#top" onclick="addToTextbox('chrome.google.com/webstore/detail/fakespot-fake-amazon-revi/nakplnnackehceedgkgkokbgbmfghain')">Fakespot</a> <a class="link" href="https://chrome.google.com/webstore/detail/fakespot-fake-amazon-revi/nakplnnackehceedgkgkokbgbmfghain" target="_blank">(view)</a></li>
                     <li><a class="link" href="#top" onclick="addToTextbox('chrome.google.com/webstore/detail/gofullpage-full-page-scre/fdpohaocaechififmbbbbbknoalclacl')">GoFullPage</a> <a class="link" href="https://chrome.google.com/webstore/detail/gofullpage-full-page-scre/fdpohaocaechififmbbbbbknoalclacl" target="_blank">(view)</a></li>
@@ -95,6 +105,7 @@
                 <ul>
                     <li><a class="link" href="#top" onclick="addToTextbox('chrome.google.com/webstore/detail/sponsorblock-for-youtube/mnjggcdmjocbbbhaepdhchncahnbgone')">SponsorBlock</a> <a class="link" href="https://chromewebstore.google.com/detail/sponsorblock-for-youtube/mnjggcdmjocbbbhaepdhchncahnbgone" target="_blank">(view)</a></li>
                     <li><a class="link" href="#top" onclick="addToTextbox('chrome.google.com/webstore/detail/return-youtube-dislike/gebbhagfogifgggkldgodflihgfeippi')">Return YouTube Dislike</a> <a class="link" href="https://chrome.google.com/webstore/detail/return-youtube-dislike/gebbhagfogifgggkldgodflihgfeippi" target="_blank">(view)</a></li>
+                    <li><a class="link" href="#top" onclick="addToTextbox('chrome.google.com/webstore/detail/youtube-redux/mdgdgieddpndgjlmeblhjgljejejkikf')">YouTube Redux</a> <a class="link" href="https://chromewebstore.google.com/detail/youtube-redux/mdgdgieddpndgjlmeblhjgljejejkikf" target="_blank">(view)</a></li>
                 </ul>
             </ul>
         </div>

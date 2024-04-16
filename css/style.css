@@ -62,9 +62,17 @@ body {
     background-color: rgb(225, 244, 255);
 }
 
-#downloadBtnDiv {
+#buttonsDiv {
     display: flex;
     justify-content: center;
+}
+
+#downloadBtnDiv {
+    margin-right: 0.15em;
+}
+
+#copyBtnDiv {
+    margin-left: 0.15em;
 }
 
 #errorDiv {

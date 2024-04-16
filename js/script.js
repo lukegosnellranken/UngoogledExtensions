@@ -19,6 +19,7 @@ let flag1 = false;
 let flag2 = false;
 let checkValidFlag = false;
 let downloadBtn = document.getElementById("downloadBtn");
+let copyBtn = document.getElementById("copyBtn");
 let addToTextboxText;
 let error = document.getElementById("errorMessage");
 let currentVersion;
@@ -135,12 +136,14 @@ function addToTextbox(url) {
     checkflags();
 }
 
-// Enable download button when both flags are set to true.
+// Enable download and copy buttons when both flags are set to true.
 function checkflags() {
     if (flag1 == true && flag2 == true){
         downloadBtn.disabled = false;
+        copyBtn.disabled = false;
     } else {
         downloadBtn.disabled = true;
+        copyBtn.disabled = true;
     }
 }
 
@@ -153,29 +156,51 @@ function onDownload() {
     console.log(extensionID);
     finalURL = url1 + version + url2 + extensionID + url3;
     console.log(finalURL);
-    urlExists(finalURL, function(exists) {
-        if (exists) {
-            checkValidFlag = true;
-            console.log("checkValidFlag true");
-        } else {
-            checkValidFlag = false;
-            console.log("checkValidFlag false");
-            // Error message (Failed, see comment below);
-        }
-    });
+    urlExists(finalURL);
     if (checkValidFlag = true) {
         window.location.href = finalURL;
-    } else {
-        console.log("FALSE!!!");
     }
 }
 
-// urlExists check function fails due to CORS security measure. Thus, it is bypassed.
+// Generate URL for copying to clipboard with given extension and browser version.
+function onCopy() {
+    userURL = document.getElementById("extensionURL").value;
+    extensionID = userURL;
+    console.log(extensionID);
+    extensionID = extensionID.split("/").pop();
+    console.log(extensionID);
+    finalURL = url1 + version + url2 + extensionID + url3;
+    console.log(finalURL);
+    urlExists(finalURL);
+    if (checkValidFlag = true) {
+        navigator.clipboard.writeText(finalURL);
+        alert("Extension URL copied to clipboard");
+    }
+}
 
-function urlExists(finalURL, callback) {
-    fetch(finalURL, { method: 'head' })
-    .then(function(status) {
-      callback(status.ok)
+// urlExists check function fails due to CORS security measure. Thus, it is bypassed (download is allowed anyway).
+
+async function urlExists(furl) {
+    const resp = await fetch(furl, { method: 'head' })
+    .then(function(response) {
+        if (response.ok) {
+            // Tested by replacing 'furl' with endpoint from https://resttesttest.com/
+            console.log("Extension URL exists");
+            checkValidFlag = true;
+        } else {
+            console.log(response.status);
+            console.log("Extension URL does not exist");
+            error.style = "display:flex";
+            errorDiv.style = "display:flex";
+            error.innerHTML = "Extension URL does not exist";
+            setTimeout(showError, 3000);
+            checkValidFlag = false;
+        }
+    })
+    .catch((err) => {
+        // Allow download despite CORS error.
+        console.log("A CORS error has occured: ", err);
+        checkValidFlag = true;
     });
 }
 
