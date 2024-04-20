@@ -174,7 +174,7 @@ function onCopy() {
     urlExists(finalURL);
     if (checkValidFlag = true) {
         navigator.clipboard.writeText(finalURL);
-        alert("Extension URL copied to clipboard");
+        alert("Download URL copied to clipboard");
     }
 }
 
