@@ -29,6 +29,12 @@ let versionNumber;
 let checkVersion100Flag = false;
 let lastAvailableVer = 0;
 
+console.log(window.innerWidth);
+if (window.innerWidth < 600) {
+    let bannerText = document.getElementById('bannerText');
+    bannerText.innerHTML = 'Please consider <a href="https://buymeacoffee.com/lukegosnell" target="_blank">☕ buying me a coffee</a>! Thanks! \\(｀▽´)/';
+}
+
 // Programatically get current Chrome version number (flag checks for chromium version 100+).
 // If first digit is 1, account for three digits. Otherwise account for two.
 // Chrome version surpasses two digits as of 02/02/22.

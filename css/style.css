@@ -32,6 +32,7 @@ body {
     color: black;
     text-align: center;
     font-size: 100%;
+    text-wrap: wrap;
 }
 
 #image {
@@ -197,6 +198,6 @@ body {
         padding-bottom: 0%;
     }
     #bannerText {
-        font-size: 75%;
+        font-size: 90%;
     }
 }
