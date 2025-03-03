@@ -31,6 +31,7 @@ body {
 #bannerText {
     color: black;
     text-align: center;
+    font-size: 100%;
 }
 
 #image {
@@ -194,5 +195,8 @@ body {
     #head2 {
         margin-top: -10%;
         padding-bottom: 0%;
+    }
+    #bannerText {
+        font-size: 75%;
     }
 }
