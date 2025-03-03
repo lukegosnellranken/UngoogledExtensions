@@ -19,10 +19,25 @@ body {
     z-index: 0;
 }
 
+#topBanner {
+    background-color: yellow;
+    opacity: 90%;
+    position: fixed;
+    margin: -8px;
+    width: 100%;
+    line-height: 0%;
+}
+
+#bannerText {
+    color: black;
+    text-align: center;
+}
+
 #image {
     position: absolute;
     z-index: -1;
     width: 20em;
+    margin-top: 20px;
 }
 
 #imageDiv {
@@ -45,6 +60,7 @@ body {
     justify-content: center;
     font-weight: bold;
     font-size: 300%;
+    margin-top: 80px;
 }
 
 #steps {
