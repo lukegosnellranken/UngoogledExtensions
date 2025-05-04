@@ -174,6 +174,7 @@ function onCopy() {
     extensionID = userURL;
     console.log(extensionID);
     extensionID = extensionID.split("/").pop();
+    extensionID = extensionID.split('?')[0];
     console.log(extensionID);
     finalURL = url1 + version + url2 + extensionID + url3;
     console.log(finalURL);
