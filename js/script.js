@@ -232,6 +232,9 @@ function get_browser() {
     };
  }
 
+ // Commenting out uBlock filters. I am unsure if they are still helpful and there are better solutions.
+ 
+ /*
 function adblockScript() {
     const script = `
         youtube.com##+js(set, yt.config_.openPopupConfig.supportedPopups.adBlockMessageViewModel, false)
@@ -266,6 +269,7 @@ function adblockScript() {
     `
     navigator.clipboard.writeText(script);
 }
+*/
 
 
  /* Outdated functions based on deprecated XMLHttpRequest() functionality.
